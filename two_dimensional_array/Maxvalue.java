@@ -33,6 +33,66 @@
  *      숫자가 81개가 아니라면 예외처리한다
  */
 
-public class Maxvalue {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Maxvalue{
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     
+    Maxvalue(){
+    }
+    
+    public static void main(String[] args) throws IOException {
+        Maxvalue main = new Maxvalue();
+        
+        int[][] matrix = new int[9][9];
+        main.inputValues(matrix);
+        int[] answers = main.compareElements(matrix);
+        main.printAnswers(answers);
+    }
+    
+    public void inputValues(int[][] matrix) throws IOException {
+        for (int layer = 0; layer < 9; layer++) {
+            String[] line = reader.readLine().split(" ");
+            for (int e = 0; e < 9; e++) {
+                matrix[layer][e] = Integer.parseInt(line[e]);
+            }
+        }
+    }
+    
+    public int[] compareElements(int[][] matrix) {
+        Maxvalue main = new Maxvalue();
+        int[] answers = new int[3];
+        answers[0] = matrix[0][0];
+        answers[1] = 0;
+        answers[2] = 0;
+        
+        for (int layer = 0; layer < 9; layer++) {
+            answers = main.findMax(matrix, answers, layer);
+        }
+        return answers;
+    }
+    
+    public int[] findMax(int[][] matrix, int[] answers, int layer) {
+        for (int e = 0; e < 9; e++) {
+            if (matrix[layer][e] > answers[0]) {
+                answers[0] = matrix[layer][e];
+                answers[1] = layer + 1;
+                answers[2] = e + 1;
+            }
+        }
+        return answers;
+    }
+    
+    public void printAnswers(int[] answers) throws IOException {
+        writer.write(Integer.toString(answers[0]) + "\n");
+        writer.write(Integer.toString(answers[1]) + " " + Integer.toString(answers[2]));
+        
+        writer.flush();
+        writer.close();
+    }
 }
