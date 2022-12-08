@@ -33,13 +33,17 @@
  * 
  *      본인은 높이와 밑변을 구해서 중복 부분을 빼주는 방법으로 시도했지만
  *      사각형의 위치가 정렬에 한계가 있어 경우의 수를 추가해주어야 한다.
+ *      x축은 정렬을 해주고, y축은 위에 왼쪽 사각형 보다 위에 있냐 아래에 있냐로 구분하여 겹치는 부분의 넓이를
+ *      구하는 것 까지는 성공하였지만
+ *      3개가 겹쳤을때는 중복되어 겹쳐진 부분을 다시 더해주어야 하기는 로직을 추가해주어야한다.
+ *      4,5,6...100개가 겹쳤을 경우도 생각하여야 한다.
+ *      
  */
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
-import java.lang.Math;
 import java.util.Comparator;
 import java.io.IOException;
 import java.util.Arrays;
@@ -101,27 +105,44 @@ public class Confetti{
         
         for (int compare = procedure + 1; compare < coordinates.length; compare++) {
             if(main.isOverlap(coordinates[procedure], coordinates[compare])) {
-                overlap = main.overlapSize(coordinates[procedure], coordinates[compare]);
+                overlap += main.overlapSize(coordinates[procedure], coordinates[compare]);
             }
         }
         return overlap;
     }
     
     public int overlapSize(int[] coordinateA, int[] coordinateB) {
-        int width = coordinateA[0] + 10 - coordinateB[0];  
-        int vertical = coordinateB[1] + 10 - coordinateA[1];
+        int width = 0;  
+        int vertical = 0;
+        
+        if(coordinateA[1] > coordinateB[1]) {
+            width = coordinateA[0] + 10 - coordinateB[0];
+            vertical = coordinateB[1] + 10 - coordinateA[1];
+        }
+        
+        if(coordinateA[1] <= coordinateB[1]) {
+            width = coordinateA[0] + 10 - coordinateB[0];
+            vertical = coordinateA[1] + 10 - coordinateB[1];
+        }
         
         int size = width * vertical;
-        size = Math.abs(size);
         return size;
     }
     
     public boolean isOverlap(int[] coordinateA, int[] coordinateB) {
         boolean result = false;
-        
-        if ((coordinateB[0] + 10) - coordinateA[0] < 20 &&
+        if(coordinateA[1] > coordinateB[1]) {
+            if ((coordinateB[0] + 10) - coordinateA[0] < 20 &&
+                (coordinateA[1] + 10) - coordinateB[1] < 20) {
+                result = true;
+            }
+        }
+
+        if(coordinateA[1] <= coordinateB[1]) {
+            if ((coordinateB[0] + 10) - coordinateA[0] < 20 &&
                 (coordinateB[1] + 10) - coordinateA[1] < 20) {
-            result = true;
+                result = true;
+            }
         }
         return result;
     }
