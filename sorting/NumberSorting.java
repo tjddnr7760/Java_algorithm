@@ -1,6 +1,9 @@
 /**
  *  Work Breakdown Structure in algorithm
  * 
+ *  시간복잡도 : for문을 두번 중첩하였고 버블소트 사용하였기 때문에 O(N^2)
+ *  공간복잡도 : 변수만 몇개 추가하는게 일정하게 유지됨으로 O(1)
+ * 
  *  1. Input
  *      총 입력받을 수의 갯수를 입력받는다
  *      수를 입력받는다
@@ -29,6 +32,61 @@
  *      입력 범위내에 있지 않은 값이 입력되면 예외처리한다 
  */
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
 public class NumberSorting {
-    
+    public static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static final BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+
+    NumberSorting() {
+    }
+
+    public static void main(String[] args) throws IOException {
+        NumberSorting main = new NumberSorting();
+        int[] numbers = main.setNumbers();
+        main.inputNumbers(numbers);
+        main.bubbleSort(numbers);
+        main.printResult(numbers);
+    }
+
+    public int[] setNumbers() throws IOException {
+        int size = Integer.parseInt(reader.readLine());
+        int[] numbers = new int[size];
+        return numbers;
+    }
+
+    public void inputNumbers(int[] numbers) throws IOException {
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = Integer.parseInt(reader.readLine());
+        }
+    }
+
+    public void bubbleSort(int[] numbers) {
+        int length = numbers.length;
+        for (int times = 1; times < length; times++) {
+            for (int index = 0; index < length - times; index++) {
+                swap(numbers, index);
+            }
+        }
+    }
+
+    public void swap(int[] numbers, int index) {
+        if (numbers[index] > numbers[index + 1]) {
+            int value = numbers[index + 1];
+            numbers[index + 1] = numbers[index];
+            numbers[index] = value;
+        }
+    }
+
+    public void printResult(int[] numbers) throws IOException {
+        for (int i = 0; i < numbers.length; i++) {
+            writer.write(Integer.toString(numbers[i]) + "\n");
+        }
+        writer.flush();
+        writer.close();
+    }
 }
