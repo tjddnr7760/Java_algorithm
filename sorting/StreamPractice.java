@@ -37,9 +37,28 @@
  *          3. collect
  *          4. sum
  *          5. reduce
- *               
+ *
  * 
+ *      - 인터페이스 트리
+ *          java.lang.AutoCloseable 자동으로 닫을 수 있게 해줌
+                java.util.stream.BaseStream<T,​S> 기본적인 스트림 메소드 기능 정의
+                    java.util.stream.DoubleStream 더블 원소들 스트림 사용 할 때
+                    java.util.stream.IntStream  인트 원소들 스트림 사용 할 때
+                    java.util.stream.LongStream  롱인트 원소들 스트림 사용 할 때
+                    java.util.stream.Stream<T>  다양한 타입들 스트림 사용 할 때            java.util.stream.Collector<T,​A,​R>
+            java.util.function.Consumer<T>
+                    java.util.stream.Stream.Builder<T>
+            java.util.function.DoubleConsumer
+                    java.util.stream.DoubleStream.Builder
+            java.util.function.IntConsumer
+                    java.util.stream.IntStream.Builder
+            java.util.function.LongConsumer
+                    java.util.stream.LongStream.Builder
+ * 
+ * 
+ *      
  */
+
 import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Stream;
