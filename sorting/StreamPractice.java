@@ -45,8 +45,9 @@
                     java.util.stream.DoubleStream 더블 원소들 스트림 사용 할 때
                     java.util.stream.IntStream  인트 원소들 스트림 사용 할 때
                     java.util.stream.LongStream  롱인트 원소들 스트림 사용 할 때
-                    java.util.stream.Stream<T>  다양한 타입들 스트림 사용 할 때            java.util.stream.Collector<T,​A,​R>
-            java.util.function.Consumer<T>
+                    java.util.stream.Stream<T>  다양한 타입들 스트림 사용 할 때
+            java.util.stream.Collector<T,​A,​R> 스트림의 요소들을 모아서 결과를 만들어 내는 메소드를 제공한다. 
+            java.util.function.Consumer<T> 입력값을 소비하는 메소드 accept를 가지고 있다
                     java.util.stream.Stream.Builder<T>
             java.util.function.DoubleConsumer
                     java.util.stream.DoubleStream.Builder
@@ -55,7 +56,15 @@
             java.util.function.LongConsumer
                     java.util.stream.LongStream.Builder
  * 
- * 
+ *      
+ *      - BaseStream<T, S> 메소드 분석
+ *              1. boolean isParallel() -
+ *              2. Iterator<T> iterator() -
+ *              3. S onClose() -
+ *              4. S parallel() -
+ *              5. S sequential() -
+ *              6. Spliterator<T> spliterator() -
+ *              7. S unordered() -
  *      
  */
 
