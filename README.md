@@ -1,9 +1,11 @@
-# Java Algorithm
+# Java Algorithm, Java Concept practice
 자바 알고리즘 스터디
+자바 개념 연습 및 정리
 
 
 ## 학습관점
 
+알고리즘
 1. 시간복잡도
 2. 공간복잡도
 3. 기능당 함수 한개씩
