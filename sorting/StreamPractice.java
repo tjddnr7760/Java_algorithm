@@ -58,10 +58,10 @@
  * 
  *      
  *      - BaseStream<T, S> 메소드 분석
- *              1. boolean isParallel() -
- *              2. Iterator<T> iterator() -
- *              3. S onClose() -
- *              4. S parallel() -
+ *              1. boolean isParallel() - 현재 스트림이 병렬로 처리 되는지 여부를 나타낸다.
+ *              2. Iterator<T> iterator() - 이터레이터를 반환하여 스트림의 요소들을 하나씩 접근할 수 있게 해준다.
+ *              3. S onClose() - 스트림을 닫을때 사용한다. 스트림이 닫힐때 자동으로 호출된다.BaseStream 인터페이스를 상속해서 재정의할 수 있다.
+ *              4. S parallel() - 스트림의 메소드를 병렬로 처리할 수 있도록 하는 메소드
  *              5. S sequential() -
  *              6. Spliterator<T> spliterator() -
  *              7. S unordered() -
